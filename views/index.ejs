@@ -12,10 +12,32 @@
         <p>no books yet</p>
     <% }else{ %>
         <% books.forEach(book => {%>
-            <p> <%= book.title %> </p>
-            <form action="/delete" method="post">
-                <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
-            </form>
+            <div >
+                <div id="book-info<%= book.id %>">
+                    <h2><%= book.title %></h2>
+                    <p><%= book.author %></p>
+                    <p><%= book.rating %></p>
+                    <p><%= book.notes %></p>
+                    <p><%= book.date_read %></p>
+                    <form action="/delete" method="post">
+                    <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
+                    </form>
+                </div>
+        
+                <form action="/update" method="post">
+                    <div id="editBook<%= book.id %>" hidden="true">
+                        <input type="text" name="bookId" id="" hidden="true" value="<%= book.id  %>">
+                         <input type="text" name="updatedTitle"  value="<%= book.title%>" >
+                         <input type="text" name="updatedAuthor"  value="<%= book.author%>">
+                         <input type="number" name="updatedRating" value="<%= book.rating%>">
+                         <input type="text" name="updatedNotes" value="<%= book.notes%>">
+                         <input type="date" name="updatedDate" value="<%= book.date_read? book.date_read.toISOString().split('T')[0] : ''%>">
+                         <button id="done<%= book.id %>">done</button>
+                    </div>
+                </form>
+                <button id="edit-btn<%=book.id%>" onclick="handler('<%= book.id %>')">edit</button>
+            </div>
+            
        <% }); } %> 
 
 
@@ -30,8 +52,15 @@
         <input type="text" name="notes" id="">
         <label for="date">date</label>
         <input type="date" name="date" id="">
-        <button >sunmit</button>
+        <button >submit</button>
     </form>
-    
+
+    <script>
+        function handler(id){
+            document.getElementById("book-info"+id).setAttribute("hidden",true);
+            document.getElementById("edit-btn"+id).setAttribute("hidden",true);
+            document.getElementById("editBook"+id).removeAttribute("hidden")
+        }
+    </script>
 </body>
 </html>
