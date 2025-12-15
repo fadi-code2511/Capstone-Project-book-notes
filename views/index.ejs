@@ -14,7 +14,7 @@
         <% books.forEach(book => {%>
             <p> <%= book.title %> </p>
             <form action="/delete" method="post">
-                <button onchange="this.form.submit()" value="<%= book.id %>">delete</button>
+                <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
             </form>
        <% }); } %> 
 
