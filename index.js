@@ -13,6 +13,17 @@ app.get("/",async(req,res)=>{
     res.render("index.ejs" ,{ books:result.rows})
 })
 
+app.post("/add",async(req,res)=>{
+    const title=req.body.title
+    const author=req.body.author
+    const rating=req.body.rating
+    const notes=req.body.notes
+    const date_read=req.body.date
+    console.log(date_read)
+    await db.query("INSERT INTO books (title,author,rating,notes,date_read) VALUES ($1,$2,$3,$4,$5)",[title,author,rating,notes,date_read])
+    res.redirect("/")
+})
+
 
 
 
