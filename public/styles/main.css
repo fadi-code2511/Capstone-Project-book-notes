@@ -45,7 +45,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(44, 80, 44);
+    background-color: #2c502c;
     height: 75px;
     color: wheat;
     padding: 5px;
@@ -89,7 +89,6 @@ main > h1{
 /* view-book-page */
 
 .main-view-book{
-    background-color: saddlebrown;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -98,6 +97,17 @@ main > h1{
 }
 
 .book-view-container{
-    background-color: gray;
-    height: 70%;
+    background-color: rgb(225, 225, 225);
+    height: 50%;
+    display: flex;
+}
+
+/* footer */
+footer{
+    display: flex;
+    background-color: #2c502c;
+    height: 100px;
+    margin-top: 10px;
+    color: white;
+    align-items: center;
 }
