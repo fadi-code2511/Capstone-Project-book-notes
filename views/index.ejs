@@ -7,13 +7,45 @@
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <p>hello</p>
-    <% if (books.length===0){ %>
+    <nav class="nav-bar">
+        <h3>Book-Notes</h3>
+        <div class="div-home"><a href="/">Home</a></div>
+        
+    </nav>
+    <main>
+        <h1>Welcom to my book-notes web-app</h1>
+        <% if (books.length===0){ %>
         <p>no books yet</p>
-    <% }else{ %>
+        <form action="/add" method="post" >
+            <label for="title">title</label>
+            <input type="text" name="title" id="">
+            <label for="author">author</label>
+            <input type="text" name="author" id="">
+            <label for="rating">rating</label>
+            <input type="number" name="rating" id="">
+            <label for="notes">notes</label>
+            <input type="text" name="notes" id="">
+            <label for="date">date</label>
+            <input type="date" name="date" id="">
+            <button >submit</button>
+        </form>
+        <% }else{ %>
+        
+        <form action="/add" method="post" >
+            <label for="title">title</label>
+            <input type="text" name="title" id="">
+            <label for="author">author</label>
+            <input type="text" name="author" id="">
+            <label for="rating">rating</label>
+            <input type="number" name="rating" id="">
+            <label for="notes">notes</label>
+            <input type="text" name="notes" id="">
+            <label for="date">date</label>
+            <input type="date" name="date" id="">
+            <button >submit</button>
+        </form>
         <div class="books-container">
-        <% books.forEach(book => {%>
-            
+            <% books.forEach(book => {%>
                 <div class="book-container" id="book-info<%= book.id %>">
                     <% if (book.cover_id) { %>
                     <img 
@@ -46,26 +78,12 @@
                         </div>
                     </div>
                 </div>
-        
-            
-       <% }); } %> 
+            <% }); } %> 
        </div>
 
 
-    <form action="/add" method="post" >
-        <label for="title">title</label>
-        <input type="text" name="title" id="">
-        <label for="author">author</label>
-        <input type="text" name="author" id="">
-        <label for="rating">rating</label>
-        <input type="number" name="rating" id="">
-        <label for="notes">notes</label>
-        <input type="text" name="notes" id="">
-        <label for="date">date</label>
-        <input type="date" name="date" id="">
-        <button >submit</button>
-    </form>
-
+    </main>
+    
     <script>
         function handler(id){
             document.getElementById("book-info"+id).setAttribute("hidden",true);
