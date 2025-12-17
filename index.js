@@ -1,5 +1,6 @@
 import express from "express";
 import db from "./db.js";
+import axios from "axios";
 
 const app=express();
 const port=3000;
@@ -20,22 +21,43 @@ app.get("/",async(req,res)=>{
     
 })
 
-app.post("/add",async(req,res)=>{
-    const title=req.body.title
-    const author=req.body.author
-    const rating=req.body.rating
-    const notes=req.body.notes
-    const date_read=req.body.date
-    // console.log(date_read)
-    try {
-        await db.query("INSERT INTO books (title,author,rating,notes,date_read) VALUES ($1,$2,$3,$4,$5)",[title,author,rating,notes,date_read])
-        res.redirect("/")
-        
-    } catch (error) {
-        console.log(error)
+app.post("/add", async (req, res) => {
+  const { title, author, rating, notes, date } = req.body;
+  let coverId = null;
+  try {
+    // looking for the book by name, author.
+    const response = await axios.get(
+      "https://openlibrary.org/search.json",
+      {
+        params: {
+          title: title,
+          author: author,
+        }
+      }
+    );
+
+    //get the cover id if book found
+    if (
+      response.data.docs.length > 0 &&
+      response.data.docs[0].cover_i
+    ) {
+      coverId = response.data.docs[0].cover_i;
     }
-   
-})
+
+    // store the cover_id in db
+    await db.query(
+      `INSERT INTO books 
+       (title, author, rating, notes, date_read, cover_id)
+       VALUES ($1,$2,$3,$4,$5,$6)`,
+      [title, author, rating, notes, date, coverId]
+    );
+
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
 
 app.post("/delete",async(req,res)=>{
     const deleteBookId=req.body.deleteBookId;
