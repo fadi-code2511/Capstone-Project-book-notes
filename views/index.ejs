@@ -14,6 +14,13 @@
         <% books.forEach(book => {%>
             <div >
                 <div id="book-info<%= book.id %>">
+                    <% if (book.cover_id) { %>
+                    <img 
+                        src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg"
+                        alt="Book cover"
+                        width="120"
+                    >
+                    <% } %>
                     <h2><%= book.title %></h2>
                     <p><%= book.author %></p>
                     <p><%= book.rating %></p>
