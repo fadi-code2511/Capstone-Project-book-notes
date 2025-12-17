@@ -16,9 +16,18 @@ app.get("/",async(req,res)=>{
         
     } catch (error) {
         console.log(error)
-    }
-    
-    
+    }    
+})
+
+app.get("/view/:id",async(req,res)=>{
+    const bookId=parseInt(req.params.id)
+    try {
+        const result= await db.query("SELECT * FROM books WHERE id=$1",[bookId])
+        res.render("view-Book.ejs" ,{ books:result.rows})
+        
+    } catch (error) {
+        console.log(error)
+    }    
 })
 
 app.post("/add", async (req, res) => {
