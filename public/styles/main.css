@@ -1,0 +1,40 @@
+
+
+
+.del-edit-div{
+    background-color: rgb(216, 237, 216);
+    display: flex;
+    gap: 50px;
+}
+
+.title-author-div{
+    /* background-color: palegoldenrod; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    width: 50%;
+}
+
+.book-container{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(233, 234, 235, 0.673);
+    border-radius: 10px;
+    box-shadow:5px 5px 5px grey;
+    padding: 20px;
+    /* width: 30%; */
+    /* height: 70%; */
+}
+
+.books-container{
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    /* width: 30%; */
+}

@@ -11,38 +11,45 @@
     <% if (books.length===0){ %>
         <p>no books yet</p>
     <% }else{ %>
+        <div class="books-container">
         <% books.forEach(book => {%>
-            <div >
-                <div id="book-info<%= book.id %>">
+            
+                <div class="book-container" id="book-info<%= book.id %>">
                     <% if (book.cover_id) { %>
                     <img 
                         src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg"
                         alt="Book cover"
-                        width="120"
+                        width="170"
                     >
                     <% } %>
-                    <a href="/view/<%= book.id %>"><%= book.title %></a>
-                    <p> <span><b>by: </b></span><%= book.author %></p>
-                    <form action="/delete" method="post">
-                    <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
-                    </form>
+                    <div>
+                        <div class="title-author-div">
+                            <a href="/view/<%= book.id %>"><h3><%= book.title %></h3></a>
+                            <p> <span><b>by: </b></span><%= book.author %></p>
+                        </div>
+                        <div class="del-edit-div">
+                            <form action="/delete" method="post">
+                                <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
+                            </form>
+                            <form action="/update" method="post">
+                                <div id="editBook<%= book.id %>" hidden="true">
+                                    <input type="text" name="bookId" id="" hidden="true" value="<%= book.id  %>">
+                                    <input type="text" name="updatedTitle"  value="<%= book.title%>" >
+                                    <input type="text" name="updatedAuthor"  value="<%= book.author%>">
+                                    <input type="number" name="updatedRating" value="<%= book.rating%>">
+                                    <input type="text" name="updatedNotes" value="<%= book.notes%>">
+                                    <input type="date" name="updatedDate" value="<%= book.date_read? book.date_read.toISOString().split('T')[0] : ''%>">
+                                    <button id="done<%= book.id %>">done</button>
+                                </div>
+                            </form>
+                            <button id="edit-btn<%=book.id%>" onclick="handler('<%= book.id %>')">edit</button>   
+                        </div>
+                    </div>
                 </div>
         
-                <form action="/update" method="post">
-                    <div id="editBook<%= book.id %>" hidden="true">
-                        <input type="text" name="bookId" id="" hidden="true" value="<%= book.id  %>">
-                         <input type="text" name="updatedTitle"  value="<%= book.title%>" >
-                         <input type="text" name="updatedAuthor"  value="<%= book.author%>">
-                         <input type="number" name="updatedRating" value="<%= book.rating%>">
-                         <input type="text" name="updatedNotes" value="<%= book.notes%>">
-                         <input type="date" name="updatedDate" value="<%= book.date_read? book.date_read.toISOString().split('T')[0] : ''%>">
-                         <button id="done<%= book.id %>">done</button>
-                    </div>
-                </form>
-                <button id="edit-btn<%=book.id%>" onclick="handler('<%= book.id %>')">edit</button>
-            </div>
             
        <% }); } %> 
+       </div>
 
 
     <form action="/add" method="post" >
