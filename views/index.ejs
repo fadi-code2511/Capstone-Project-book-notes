@@ -3,7 +3,8 @@
         <h1>Welcom to my book-notes web-app</h1>
         <% if (books.length===0){ %>
         <p>no books yet</p>
-        <form action="/add" method="post" >
+        <form class="form-add" action="/add" method="post" >
+            <h2>Add a new book</h2>
             <label for="title">title</label>
             <input type="text" name="title" id="">
             <label for="author">author</label>
@@ -14,7 +15,8 @@
         </form>
         <% }else{ %>
         
-        <form action="/add" method="post" >
+        <form class="form-add" action="/add" method="post" >
+            <h2>Add a new book</h2>
             <label for="title">title</label>
             <input type="text" name="title" id="">
             <label for="author">author</label>
