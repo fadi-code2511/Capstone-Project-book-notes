@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <p>hello</p>
+    <p>helloo</p>
     <% if (books.length===0){ %>
         <p>no books yet</p>
     <% }else{ %>
@@ -21,8 +21,11 @@
                         width="120"
                     >
                     <% } %>
-                    <a href="/view/<%= book.id %>"><%= book.title %></a>
-                    <p> <span><b>by: </b></span><%= book.author %></p>
+                    <h2><%= book.title %></h2>
+                    <p><%= book.author %></p>
+                    <p><%= book.rating %></p>
+                    <p><%= book.notes %></p>
+                    <p><%= book.date_read %></p>
                     <form action="/delete" method="post">
                     <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
                     </form>
