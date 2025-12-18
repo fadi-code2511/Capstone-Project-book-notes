@@ -102,7 +102,7 @@ main{
     display: flex;
     flex-direction: column;
     gap: 30px;
-    height: 100vh;
+    height: 100%;
 
 }
 main > h1{
