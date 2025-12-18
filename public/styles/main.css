@@ -10,7 +10,8 @@
 .del-edit-div{
     background-color: rgb(216, 237, 216);
     display: flex;
-    gap: 50px;
+    /* gap: 50px; */
+    justify-content: space-around;
 }
 
 .title-author-div{
@@ -19,6 +20,12 @@
     align-items: flex-start;
     gap: 5px;
     width: 50%;
+}
+
+.title-author-div > div{
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
 .book-container{
@@ -40,6 +47,26 @@
     gap: 50px;
 }
 
+.form-add{
+    background-color: #d6e7d6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+label{
+    font-weight: bold;
+}
+button{
+ background-color: #4b8b4b;
+ width: 70px;
+ height: 40px;
+ font-size: 15px;
+ /* font-weight: bold; */
+ border: 0 ;
+ border-radius: 5px;
+}
 /* nav-bar */
 .nav-bar{
     display: flex;
@@ -75,6 +102,7 @@ main{
     display: flex;
     flex-direction: column;
     gap: 30px;
+    height: 100%;
 
 }
 main > h1{
@@ -97,9 +125,14 @@ main > h1{
 }
 
 .book-view-container{
-    background-color: rgb(225, 225, 225);
-    height: 50%;
+    /* background-color: rgba(225, 225, 225, 0.541); */
+    border: 1px solid rgba(139, 69, 19, 0.66);
+    border-radius: 5px;
+    height: 75%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 /* footer */

@@ -6,23 +6,26 @@
                     <img 
                         src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg"
                         alt="Book cover"
-                        width="150"
-                        height="200"
+                        width="200"
+                        height="250"
                     >
                     <% } %>
                     <div>
                         <div class="title-author-div">
-                            <a href="/view/<%= book.id %>"><h3><%= book.title %></h3></a>
-                            <p> <span><b>by: </b></span><%= book.author %></p>
+                            <div>
+                                <label>Title: </label>
+                                <h3><%= book.title %></h3>
+                            </div>
+                            <p> <span><b>Author: </b></span><%= book.author %></p>
+                            <label for="notes">Notes:</label>
                             <p><%= book.notes %></p>
+                            <label for="rate">Rate:</label>
                             <p><%= book.rating %></p>
+                            <label for="date_read">Read Date:</label>
                             <p><%= book.date_read %></p>
                         </div>
                         <div class="del-edit-div">
-                            <form action="/delete" method="post">
-                                <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
-                            </form>
-                            <form action="/update" method="post">
+                            <form action="/update" method="post" >
                                 <div id="editBook<%= book.id %>" hidden="true">
                                     <input type="text" name="bookId" id="" hidden="true" value="<%= book.id  %>">
                                     <input type="text" name="updatedTitle"  value="<%= book.title%>" >
@@ -33,7 +36,11 @@
                                     <button id="done<%= book.id %>">done</button>
                                 </div>
                             </form>
-                            <button id="edit-btn<%=book.id%>" onclick="handler('<%= book.id %>')">edit</button>   
+                            <button id="edit-btn<%=book.id%>" onclick="handler('<%= book.id %>')">edit</button> 
+                            
+                            <form action="/delete" method="post">
+                                <button onchange="this.form.submit()" name="deleteBookId" value="<%= book.id %>">delete</button>
+                            </form>  
                         </div>
                     </div>
                 </div>

@@ -90,7 +90,7 @@ app.post("/update",async(req,res)=>{
     try {
         await db.query("UPDATE books SET title=($1),author=($2),rating=($3), notes=($4),date_read=($5) where id=($6)",
             [updatedTitle,updatedAuthor,updatedRating,updatedNotes,updatedDate,id])
-        res.redirect("/")
+        res.redirect(`/view/${id}`)
     } catch (error) {
         console.log(error)
     }
